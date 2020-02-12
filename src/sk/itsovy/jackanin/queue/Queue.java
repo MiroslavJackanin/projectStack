@@ -1,16 +1,17 @@
-package sk.itsovy.jackanin.stack;
-import sk.itsovy.jackanin.exception.StackOverflowException;
-import sk.itsovy.jackanin.exception.StackUnderflowException;
+package sk.itsovy.jackanin.queue;
+
+import sk.itsovy.jackanin.exception.QueueOverflowException;
+import sk.itsovy.jackanin.exception.QueueUnderflowException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stack<T> {
+public class Queue<T> {
     private int size;
     private int capacity;
     private List<T> list;
 
-    public Stack(int capacity) {
+    public Queue(int capacity) {
         if (capacity <= 0){
             System.out.println("Invalid capacity");
             System.out.println("Capacity set to 5");
@@ -22,6 +23,13 @@ public class Stack<T> {
         list = new ArrayList<>();
     }
 
+    public int getSize() {
+        return size;
+    }
+    public int getCapacity() {
+        return capacity;
+    }
+
     public boolean isEmpty(){
         return size==0;
     }
@@ -30,54 +38,41 @@ public class Stack<T> {
         return capacity==0;
     }
 
-    public int getCapacity(){
-        return capacity;
-    }
-
-    public void push(T obj) throws StackOverflowException {
+    public void enQueue(T obj) throws QueueOverflowException {
         if (obj == null){
             return;
         }else if (!isFull()){
             list.add(obj);
             size++;
         }else {
-            throw new StackOverflowException("Stack is full");
+            throw new QueueOverflowException("Stack is full");
         }
     }
 
-    public void pop() throws StackUnderflowException {
+    public void deQueue() throws QueueUnderflowException {
         if (isEmpty()){
-            throw new StackUnderflowException("Stack is empty");
+            throw new QueueUnderflowException("Stack is empty");
         }else {
-            list.remove(size-1);
+            list.remove(0);
             size--;
         }
     }
 
-    public T getTop(){
+    public T getFront(){
         if (isEmpty()){
             return null;
         }else {
-            return list.get(size-1);
+            return list.get(0);
         }
     }
 
-    public T topAndPop() throws StackUnderflowException {
-        T temp = getTop();
-        pop();
+    public T getFrontAndDeque() throws QueueUnderflowException {
+        T temp = getFront();
+        deQueue();
         return temp;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void empty(){
-        list.clear();
-        size=0;
-    }
-
-    public void printStack(){
+    public void printQueue(){
         for (int i=0; i<size; i++){
             System.out.println(list.get(i));
         }
