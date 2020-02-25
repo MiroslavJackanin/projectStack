@@ -73,7 +73,16 @@ class MyListTest {
 
     @Test
     void remove() {
+        MyList<String> myList = new MyList<>();
+        Node<String> node1 = new Node<>("Data");
+        Node<String> node2 = new Node<>("Dat");
 
+        myList.addAtPosition(node1, 5050);
+        myList.addAtPosition(node2, -2051);
+        assertNotNull(myList.getHead());
+        myList.remove(node1);
+        myList.remove(node2);
+        assertNull(myList.getHead());
     }
 
     @Test

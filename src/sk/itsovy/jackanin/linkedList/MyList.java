@@ -24,6 +24,10 @@ public class MyList<T> {
         if (node == null){
             return;
         }
+        if (head == null){
+            head = node;
+            return;
+        }
         Node<T> node1 = head;
         while(node1.getNext() != null){
             node1 = node1.getNext();
@@ -40,7 +44,9 @@ public class MyList<T> {
             addToFront(node);
         }else if (index >= getSize()){
             addToEnd(node);
-        }else {
+        }else if (head == null) {
+            addToFront(node);
+        } else {
             Node<T> node1 = head;
             for (int i = 1; i < index; i++) {
                 node1 = node1.getNext();
