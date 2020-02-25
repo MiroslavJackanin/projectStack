@@ -3,6 +3,10 @@ package sk.itsovy.jackanin.linkedList;
 public class MyList<T> {
     private Node<T> head;
 
+    public Node<T> getHead() {
+        return head;
+    }
+
     public void addToFront(Node<T> node){
         if (node == null){
             return;
