@@ -41,5 +41,10 @@ public class Main {
         myList.remove(myList.getByName("Peto"));
 
         myList.print();
+
+        System.out.println("------------");
+        myList.removeAll();
+
+        myList.print();
     }
 }
